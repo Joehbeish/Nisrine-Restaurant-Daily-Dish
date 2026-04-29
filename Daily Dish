@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today's Special</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 95%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Today's Special</h1>
+    <div class="date" id="dateText"></div>
+
+    <img id="dishImage" src="" alt="Daily Dish">
+
+    <div class="footer">Scan daily to discover our chef's special</div>
+  </div>
+
+  <script>
+    // 🔹 UPDATE THESE IMAGE LINKS
+    const images = [
+      "images/dish1.jpg",
+      "images/dish2.jpg",
+      "images/dish3.jpg",
+      "images/dish4.jpg",
+      "images/dish5.jpg",
+      "images/dish6.jpg",
+      "images/dish7.jpg",
+      "images/dish8.jpg",
+      "images/dish9.jpg",
+      "images/dish10.jpg",
+      "images/dish11.jpg",
+      "images/dish12.jpg",
+      "images/dish13.jpg",
+      "images/dish14.jpg",
+      "images/dish15.jpg"
+    ];
+
+    // 🔹 SET YOUR CAMPAIGN START DATE (YYYY-MM-DD)
+    const startDate = new Date("2026-05-01");
+
+    const today = new Date();
+    const diffTime = today - startDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    // Prevent negative index if before start date
+    const index = diffDays >= 0 ? diffDays % images.length : 0;
+
+    // Set image
+    document.getElementById("dishImage").src = images[index];
+
+    // Format date display
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("dateText").innerText = today.toLocaleDateString(undefined, options);
+  </script>
+</body>
+</html>
